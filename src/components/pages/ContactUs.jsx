@@ -3,9 +3,9 @@ import Footer from "../Footer";
 
 export default function ContactUs() {
   return (
-    <section id="contact-us">
+    <section id="contactUs">
       <div className="container p-5">
-        <div className="row algin-items-center">
+        <div className="row align-items-center">
           <div className="col-lg-4">
             <img src="/images/cntact.jpg" alt="contact" className="w-100" />
           </div>
@@ -36,6 +36,7 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
+
       <br />
       <br />
       <br />

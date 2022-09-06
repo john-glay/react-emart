@@ -21,9 +21,10 @@ export default function AboutUs() {
       </div>
     ));
   };
+
   return (
     <>
-      <section id="about-us">
+      <section id="aboutUs">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 text-center text-lg-1 order-lg-1">
@@ -52,6 +53,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
       <section id="popular" className="py-5">
         <div className="container">
           <div className="title text-center pt-3 pb-5">
@@ -66,11 +68,11 @@ export default function AboutUs() {
               {renderPopular(topRated)}
             </div>
             <div className="col-md-6 col-lg-4 g-3 row">
-              <h3 className="fs-5">Top Rated</h3>
+              <h3 className="fs-5">Best Selling</h3>
               {renderPopular(bestSelling)}
             </div>
             <div className="col-md-6 col-lg-4 g-3 row">
-              <h3 className="fs-5">Top Rated</h3>
+              <h3 className="fs-5">On sale</h3>
               {renderPopular(onSale)}
             </div>
           </div>
