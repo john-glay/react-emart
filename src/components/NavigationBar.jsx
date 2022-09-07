@@ -3,8 +3,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { Container, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { auth } from "../firebase";
+import * as actionUser from "../redux/actions/actionUser";
+import { bindActionCreators } from "redux";
+import { useDispatch } from "react-redux";
 
 export default function NavigationBar() {
+  const { logoutUser } = bindActionCreators(actionUser, useDispatch());
+
+  const logout = (e) => {
+    e.preventDefault();
+    auth.signOut();
+    logoutUser();
+  };
+
   return (
     <Navbar bg="light" expand="lg" className="bg-white py-4 fixed-top">
       <Container>
@@ -29,6 +41,7 @@ export default function NavigationBar() {
               to="/login"
               className="btn position-relative"
               type="button"
+              onClick={logout}
             >
               <FontAwesomeIcon icon={faSignOut} />
               <span className="nav-btn-label"> LOGOUT</span>
