@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./auth.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { auth, db, facebookProvider, googleProvider } from "../../../firebase";
 import { bindActionCreators } from "redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actionUser from "../../../redux/actions/actionUser";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -23,6 +23,15 @@ export default function Login() {
   const [userList] = useCollection(db.collection("users"));
   const [user] = useAuthState(auth);
   const { loginUser } = bindActionCreators(actionUser, useDispatch());
+  const navigate = useNavigate();
+  const activeUser = useSelector((state) => state.activeUser);
+
+  useEffect(() => {
+    if (user || activeUser.email) {
+      // Navigate Home Page
+      navigate("/");
+    }
+  })
 
   const checkIfValid = () => {
     let isValid = false;
