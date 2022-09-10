@@ -5,11 +5,11 @@ import Specials from "../Specials";
 import Banner from "../Banner";
 import Blogs from "../Blogs";
 import Footer from "../Footer";
+import * as actionUser from "../../redux/actions/actionUser";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useDispatch, useSelector } from "react-redux";
-import * as actionUser from "../../redux/actions/actionUser";
 import { bindActionCreators } from "redux";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       loginUser({ email: user.email });
     } else if (userList?.docs.length !== 0) {
       userList?.docs.forEach((doc) => {
-        if (doc.data().email === actionUser.email) {
+        if (doc.data().email === activeUser.email) {
           loginUser({ id: doc.id, email: doc.data().email });
         }
       });
